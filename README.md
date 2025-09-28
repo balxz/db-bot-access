@@ -1,0 +1,50 @@
+```javascript
+/**
+     * Copyright © 2025 [ balxzzy ]
+     *
+     * All rights reserved. This source code is the property of [ Shiina Team ].
+     * Unauthorized copying, distribution, modification, or use of this file,
+     * via any medium, is strictly prohibited without prior written permission.
+     *
+     * This software is protected under international copyright laws.
+     *
+     * Contact: [ pa424013@gmail.com ]
+     * GitHub: https://github.com/balxz
+     * Official: https://balxzzy.web.id
+     * Support: https://t.me/sh_team1
+ */
+import axios from "axios"
+
+class bAuth {
+    constructor() {
+        /** ganti jdi raw repo mu yh **/
+        this.dbnyaJing = "https://raw.githubusercontent.com/balxz/db-bot-access/refs/heads/main/auth.json"
+        this.aksesNya = []
+    }
+
+    async loadN() {
+        try {
+            let { data } = await axios.get(this.dbnyaJing)
+            this.aksesNya = data
+            console.log("[ 🪷 ] sedang mengecek nomor di database...")
+        } catch (error) {
+            console.log("[ 🪷 ] gagal cek nomor, apakah url raw benar?")
+        }
+    }
+
+    checkN(dongo) {
+        let woi = dongo.replace(/[^\d+]/g, "")
+        if (woi.startsWith("+")) {
+            woi = woi.substring(1)
+        }
+        let akses = this.aksesNya.includes(woi)
+        
+        return {
+            allowed: akses,
+            message: akses ? "HOREEEE NOMOR TERDAFTAR (SELAMAT MENGGUNAKAN)" : "NOMOR TIDAK TERDAFTAR DI DATABASE (SILAHKAN HUBUNGI PEMILIK SC)"
+        }
+    }
+}
+
+export default bAuth
+```
