@@ -89,4 +89,58 @@ export default bAuth
   } while (true)
   // lanjutkan di bawah logika request pairing nya 
 ```
+
+## CONTOHNYA 
 ---
+```javascript
+if (!conn.authState.creds.registered) {
+    // call auth tadi — load number
+    console.log(chalk.blue('[ 🪷 ] Loading...'))
+    await auth.loadN()
+    
+    const { registration } = { registration: {} };
+    let phoneNumber = "";
+    do {
+        phoneNumber = await question(
+            chalk.blueBright("Masukkan nomor yang valid, dengan Region: 62xxx:\n")
+        );
+        
+        // call auth tadi — check number
+        const checkResult = auth.checkN(phoneNumber)
+        if (!checkResult.allowed) {
+            console.log(chalk.red(` ${checkResult.message}`))
+            console.log(chalk.yellow("Silakan masukkan nomor yang terdaftar...\n"))
+            continue
+        } else {
+            console.log(chalk.green(`${checkResult.message}`))
+            break
+        }
+        
+    } while (true);
+    
+    rl.close();
+    phoneNumber = phoneNumber.replace(/\D/g, "");
+    console.log(chalk.bgWhite(chalk.blue("Tunggu Sebentar...")));
+    setTimeout(async () => {
+        let code = await conn.requestPairingCode(phoneNumber);
+        code = code?.match(/.{1,4}/g)?.join("-") || code;
+        console.log(
+            chalk.black(chalk.bgGreen(`Your Pairing Code : `)),
+            chalk.black(chalk.white(code))
+        );
+    }, 3000);
+}
+```
+---
+
+
+
+
+
+
+
+
+
+
+
+
