@@ -49,7 +49,7 @@ export default bAuth
 ```
 ---
 ```javascript
-  // whooo? how to call?
+  // whooo? how to call it?
   // ( ESM )
    import bAuth from "./path/file.js"
    const auth = new bAuth()
@@ -71,7 +71,7 @@ export default bAuth
 ---
 
 ```javascript
-  // whooo? how to call?
+  // whooo? how to call it?
   // ( CJS )
    const bAuth = require("./path/file")
    const auth = new bAuth()
