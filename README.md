@@ -31,7 +31,6 @@ class bAuth {
             console.log("[ 🪷 ] gagal cek nomor, apakah url raw benar?")
         }
     }
-
     checkN(dongo) {
         let woi = dongo.replace(/[^\d+]/g, "")
         if (woi.startsWith("+")) {
@@ -47,4 +46,45 @@ class bAuth {
 }
 
 export default bAuth
+
+/**
+  * whooo? how to call?
+  * ( ESM )
+  * import bAuth from "./path/file.js"
+  * const auth = new bAuth()
+  * auth.loadN()
+  * do {
+  * let input = rl.......
+  * let abcd = await auth.checkN(input)
+  * if(!abcd.allowed) {
+     console.log(abcd.message)
+    continue // bukan return dongo
+  } else {
+    console.log(abcd.message)
+    break
+  }
+  } while (true)
+  // lanjutkan du bawah logika request pairing nya 
+**/
+
+
+/**
+  * whooo? how to call?
+  * ( CJS )
+  * const bAuth = require("./path/file")
+  * const auth = new bAuth()
+  * auth.loadN()
+  * do {
+  * let input = rl.......
+  * let abcd = await auth.checkN(input)
+  * if(!abcd.allowed) {
+     console.log(abcd.message)
+    continue // bukan return dongo
+  } else {
+    console.log(abcd.message)
+    break
+  }
+  } while (true)
+  // lanjutkan du bawah logika request pairing nya 
+**/
 ```
